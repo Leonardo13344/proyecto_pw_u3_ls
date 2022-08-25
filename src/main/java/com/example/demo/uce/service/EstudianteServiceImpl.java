@@ -1,5 +1,7 @@
 package com.example.demo.uce.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,5 +36,11 @@ public class EstudianteServiceImpl implements IEstudianteService{
 	public void eliminar(Integer id) {
 		// TODO Auto-generated method stub
 		this.estudianteRepository.eliminar(id);
+	}
+
+	@Override
+	public List<Estudiante> buscarCreditos(Integer creditos) {
+		// TODO Auto-generated method stub
+		return this.estudianteRepository.buscarCreditos(creditos);
 	}
 }
