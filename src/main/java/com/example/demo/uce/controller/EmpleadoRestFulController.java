@@ -9,6 +9,7 @@ import javax.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,7 +31,7 @@ public class EmpleadoRestFulController {
 	@Autowired
 	private IEmpleadoService empleadoService;
 
-	@PostMapping()
+	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
 	public String crear(@RequestBody Empleado empleado) {
 		String mensaje = "Estudiante Insertado Correctamente";
 		try {
@@ -49,7 +50,7 @@ public class EmpleadoRestFulController {
 		return "Empleado Actualizado";
 	}
 
-	@GetMapping(path = "/{idEmpleado}")
+	@GetMapping(path = "/{idEmpleado}", produces = MediaType.APPLICATION_XML_VALUE)
 	public ResponseEntity<Empleado> buscar(@PathVariable("idEmpleado") Integer idEmpleado) {
 		Empleado empl = this.empleadoService.buscarxId(idEmpleado);
 		return ResponseEntity.ok(empl);
