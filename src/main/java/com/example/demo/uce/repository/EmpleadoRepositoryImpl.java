@@ -8,6 +8,7 @@ import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 import com.example.demo.uce.repository.modelo.Empleado;
+import com.example.demo.uce.repository.modelo.Hijo;
 
 @Repository
 @Transactional
@@ -48,8 +49,22 @@ public class EmpleadoRepositoryImpl implements IEmpleadoRepository{
 		return myQuery.getResultList();
 	}
 
+	@Override
+	public List<Empleado> buscarAll() {
+		// TODO Auto-generated method stub
+		TypedQuery<Empleado> myQuery = this.entityManager.createQuery("SELECT e FROM Empleado e", Empleado.class);
+		
+		return myQuery.getResultList();
+	}
 
 
+	public List<Hijo> buscarHijosEmpleado(Integer id) {
+		// TODO Auto-generated method stub
+		TypedQuery<Hijo> myQuery = this.entityManager.createQuery("SELECT h FROM Hijo h WHERE h.empl.id> =: id", Hijo.class);
+		myQuery.setParameter("id", id);
+		return myQuery.getResultList();
+
+	}
 	
 	
 }
